@@ -1,0 +1,11 @@
+# Legend:  [TWEAK] = safe to change   [LOCKED] = do not touch
+# [LOCKED] Installed packages: rebuilt with `npm install`. Never commit them.
+node_modules
+# [LOCKED] Build output: rebuilt with `npm run build`.
+dist
+# [TWEAK] Test coverage reports, if you enable coverage later.
+coverage
+# [TWEAK] Local-only environment overrides.
+*.local
+# [TWEAK] macOS folder metadata.
+.DS_Store

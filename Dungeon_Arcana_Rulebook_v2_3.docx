@@ -1,0 +1,328 @@
+**DUNGEON ARCANA**
+
+*A Cooperative Roguelite Card Game*
+
+**OFFICIAL RULEBOOK — v2.3 (Patched Edition)**
+
+*Supersedes v2.2 — see Patch Notes below*
+
+## PATCH NOTES — v2.3
+
+*A major structural pass: the maze is now generated in full before play begins, combat gets a Court Card retaliation layer, Court ATK moves to dice pools, and eleven Major Arcana cards were reworked for clarity or theme. Anything not listed here is unchanged from v2.2.*
+
+- Maze generation is now pre-game, not dynamic. The entire dungeon is laid out face-down before the first move, using a cursor-based random walk. See Section 4 (all-new).
+
+- The starting tile is now a fixed, mandatory fight: the Entrance Guardian. All players begin standing on it and must defeat it together before anyone can move. See Section 3.
+
+- Movement no longer uses a d4 during play. Walking between connected tiles is free and roll-less; the d4 is used only during pre-game generation. See Section 4.
+
+- Engaging now triggers any time you're standing on an undefeated tile, not only on arrival — this makes multi-turn fights and helping allies mid-fight explicit rather than implied. See Section 5.
+
+- Cups bonus effect rounding flipped from round-down to round-up, so Ace-as-1 no longer produces a zero heal. Still two-thirds of the card's value; Ace remains your choice of 1 or 11 for this math, same as for damage.
+
+- Court Card ATK converted from a flat number to a dice pool: Page 1d6, Knight 2d6, Queen 3d6, King 4d6. This removes single-hit one-shot potential against a 30 HP pool.
+
+- Court Card HP adjusted -5% from v2.2 values to compensate for the new dice-pool ATK swinging higher on good rolls. See Section 9, Court Card Stat Block.
+
+- Major Arcana HP increased a flat +7% across the board (Justice excluded, per its own fixed-target design). This replaces v2.2's tiered ATK-scaled approach with a simpler uniform bump. See Section 9.
+
+- NEW — Court Card Retaliation Effects: a Court Card that survives a Round now inflicts a bonus suit-flavored effect on top of normal ATK retaliation, for the duration of that engagement only. See Section 6.
+
+- NEW — Health Pools cannot exceed their starting maximum (30). Healing effects (Cups bonus, Empress, Sun, Star, Temperance) that would push a player above 30 simply cap there.
+
+- Eleven Codex cards reworked for theme or to fix broken/unresolvable text: The Hierophant, Judgement, Justice (spell), The Hermit, The Star, Wheel of Fortune (spell), The Tower (spell), Temperance (boss retaliation + spell), The Devil, The High Priestess (boss + spell), The Moon (boss + spell). See Section 9.
+
+- Court Card spells now roll the card's ATK dice pool at the moment of burning and feed that result into the suit's bonus-effect math, replacing the old flat-stat method. See Section 7.
+
+- The World's win-gate is now written explicitly: it can be revealed early but cannot be Engaged until every other tile in the run's Dungeon Deck has been defeated. See Section 9.
+
+- Defeating The World now explicitly ends the entire campaign — no reshuffle, no new run. An optional, ruleless PvP bonus mode is noted in Section 10 for groups who want one more fight.
+
+- Terminology formally defined: Turn (one player's move/engage/draw/act), Round (one full rotation of the table, rarely referenced), Run (one full playthrough of a single generated map, start to finish). See Section 6.
+
+# 1. OVERVIEW
+
+Dungeon Arcana is a roguelite dungeon-crawler played with a standard Tarot deck. Before play begins, the dungeon is generated in full as a hidden, face-down maze rooted at a fixed Entrance Guardian tile. Players start there together, defeat it as a group, and then explore the revealed maze — together or separately, their choice — battling Court Cards and Major Arcana bosses using a shared deck of Minor Arcana suit cards.
+
+Every boss you defeat becomes a one-time spell. Every spell you burn returns to haunt the dungeon on your next run. Combat is fought player-by-player, but the run itself is still shared: the team wins together when The World falls, and the run isn't over until every player is down.
+
+**Players: 2–4**
+
+Components needed: One full Tarot deck (78 cards), a d4, a d6 (or several), tokens or paper for tracking each player's Health and Hand size.
+
+# 2. COMPONENTS
+
+| **Component** | **Cards** | **Role** |
+| --- | --- | --- |
+| Minor Arcana (Ace–10, all 4 suits) | 40 cards | The Player Deck — used for combat and suit effects |
+| Court Cards (Page/Knight/Queen/King, all 4 suits) | 16 cards | The Dungeon — grind-tier boss tiles |
+| Major Arcana (The Fool–The World) | 22 cards | The Dungeon — unique named boss tiles |
+
+*The 16 Court Cards + 22 Major Arcana together form the 38-card Dungeon Deck.*
+
+# 3. SETUP
+
+**UPDATED v2.3 — **The starting tile is now a mandatory, fixed fight, and the whole maze is built before anyone moves.
+
+- Draw one random card from the shuffled 38-card Dungeon Deck (Majors + Courts) and reshuffle-and-redraw until a Court Card comes up. This is the Entrance Guardian — place it face-up at the origin position. The entrance is never a named boss.
+
+- Generate the rest of the maze in full, face-down, before play begins — see Section 4 for the generation procedure. No tiles are placed during play; the entire dungeon exists, hidden, from the first turn.
+
+- All players begin standing together on the Entrance Guardian tile. It must be defeated as a group before any player may move — see Section 4, "Leaving the Entrance."
+
+- Shuffle the Player Deck (40 Minor Arcana cards) and place it face-down as the shared Draw Pile. Keep a space beside it for a shared Discard Pile.
+
+- Each player draws a 5-card starting hand from the shared Draw Pile.
+
+- Set each player's own Health Pool to 30. Health is tracked per player, not as a team total — see Section 6 for how retaliation and defeat work under this. A Health Pool can never exceed 30, even from healing effects.
+
+- Choose a starting player for turn order once the Entrance Guardian is down and free exploration begins. Play proceeds clockwise.
+
+# 4. THE MAZE — GENERATION & MOVEMENT
+
+*This section replaces v2.2**'**s dynamic **"**Exploration**"** system entirely. The maze is now built once, in full, before the first player turn.*
+
+## Generation (Pre-Game, No Players Yet)
+
+The maze is built by walking a cursor around a grid and dropping tiles as it moves, so the result branches into rooms and intersections rather than forming a single folded corridor.
+
+- Place the Entrance Guardian at the origin. The cursor starts there.
+
+- Roll a d4 from the cursor's current position (1=North, 2=South, 3=East, 4=West).
+
+- If that direction is empty, place the next card from the shuffled Dungeon Deck there, face-down, and move the cursor onto it.
+
+- If that direction is already occupied but not fully surrounded (at least one of its own four neighbors is still empty), move the cursor onto it — no card is placed — and roll again from there.
+
+- If that direction is occupied and fully surrounded (all four of its neighbors are already filled), the roll is invalid — reroll without moving the cursor.
+
+- Repeat until all 38 Dungeon Deck cards have been placed. The result is a fixed, fully face-down maze that no one has seen yet.
+
+*A cursor can never truly get stuck: a tile only becomes fully surrounded the instant its last open neighbor is filled, and the cursor is standing on that new neighbor when it happens — never trapped inside the tile that just sealed shut.*
+
+## Leaving the Entrance
+
+All players start together on the Entrance Guardian and must defeat it as a group before anyone can move. Once it falls, it becomes the first cleared tile, and players may explore together or split up from there — their choice, and it can change turn to turn.
+
+## Movement (Play)
+
+**UPDATED v2.3 — **No d4 is rolled during play at all. The d4 is a generation-only tool.
+
+- Walking: on your turn, you may move to any tile directly connected to your current position, in one step, at no cost and no roll — whether that tile is cleared, still face-down, or a wounded tile you've already engaged. You cannot skip or jump past a tile to reach one further away.
+
+- Stepping onto a face-down tile flips it face-up, revealing its HP and ATK, and begins combat — see Section 5, Engage.
+
+- Stepping onto an already-cleared tile is just walking; nothing triggers.
+
+- Stepping onto a revealed-but-undefeated tile (whether you damaged it last turn or an ally left it wounded) engages it again — this is how multi-turn fights and jumping in to help a struggling ally both work.
+
+- Retreating: you may leave an engaged tile — wounds and all — by walking to a connected cleared tile on a later turn. Damage already dealt stays on the tile for next time.
+
+## The Maze Is a Grid, Not a Line
+
+The dungeon is generated before play as a network of tiles on an unbounded grid, rooted at the Entrance. Each tile connects to its North/South/East/West neighbors. There's no fixed border and no maximum size, but the grid itself is fixed the moment generation finishes — nothing shifts, nothing regenerates during play. Branching intersections from the cursor-walk keep the layout feeling like a real dungeon rather than a single corridor.
+
+# 5. TURN STRUCTURE
+
+On your turn, in order:
+
+- 1. MOVE — walk to a connected tile, if you choose to (Section 4). No roll required.
+
+- 2. ENGAGE — if you are standing on an undefeated tile (whether you just arrived or you're staying to keep fighting), its HP and ATK are revealed (unless a card effect hides this) and Combat begins or continues (Section 6).
+
+- 3. DRAW — draw 1 card from the shared Draw Pile. You may only draw on a turn where you engaged a tile; a turn spent only walking, with no engagement, draws nothing.
+
+- 4. ACT — play cards from your hand as a combo against the engaged tile, or burn an owned Spell (Section 8).
+
+*If the shared Draw Pile ever runs out, immediately shuffle the Discard Pile to form a new Draw Pile.*
+
+*There is no maximum hand size. Some Court Card and card-draw effects can grow a hand very large by design — this is intentional and not capped.*
+
+# 6. COMBAT
+
+### Definitions
+
+- TURN — one player's individual move/engage/draw/act sequence. This is what almost every rule in this book means by "turn." Combat against a tile can span multiple turns, even across different players, since damage carries over.
+
+- ROUND — one full rotation of every player at the table. Rarely referenced directly; a few specific card effects use it (see the Empress, Section 9).
+
+- RUN — the entire playthrough on one generated maze, start to finish, whether the team wins or wipes.
+
+When a player engages a Dungeon tile (Court Card or Major Arcana), combat begins.
+
+- Reveal the tile's HP and ATK (unless a card effect hides this). Court Card ATK is a dice pool; Major Arcana ATK is also a dice pool — see Section 9.
+
+- During Act, play one or more cards from your hand as a combo. The total value of the cards played is dealt as damage to the tile.
+
+- Base Damage: every Minor Arcana card, when played in a combo, deals damage equal to its face value (2–10 = that number; Ace = 1 or 11, your choice at the time it's played). This is on top of, and separate from, its suit bonus below.
+
+- Damage carries over between turns — a tile doesn't heal back up just because your turn ended, unless a specific card effect (The Chariot) or a Cups-suit Court Card's retaliation effect says otherwise.
+
+- If the tile's HP reaches 0, it is defeated — see Section 7.
+
+- If you do not defeat the tile, it strikes back: roll its ATK dice pool fresh and deal that total to the engaging player's own Health Pool — it does not splash to any other player, even one also fighting that tile — after any suit-effect ATK reduction (Wands/Strength) is subtracted, and after any Court Card retaliation effect (below) is applied on top.
+
+- Played cards go to the shared Discard Pile after use.
+
+- Suit Immunity: Court Cards are immune to damage from their own suit (e.g., a Queen of Cups takes no damage from Cups cards) — this blocks damage only, not the card's bonus effect. Plan your combos accordingly.
+
+### Suit Effects (Combat Bonuses)
+
+Each numbered card, in addition to its face value as damage, grants a bonus effect equal to half its value, rounded up — except Cups, which uses two-thirds, rounded up.
+
+| **Suit** | **Theme** | **Damage** | **Bonus Effect** |
+| --- | --- | --- | --- |
+| Wands | Will, action, drive | Face value | Reduces the boss's rolled ATK this turn by half the card's value (round up) |
+| Cups | Emotion, intuition, healing | Face value | Heals the acting player's own Health Pool by two-thirds of the card's value, rounded up. Cannot push Health above 30. |
+| Swords | Intellect, conflict, precision | Face value | Deals bonus damage equal to half the card's value (round up) |
+| Pentacles | Resources, stability | Face value | Draws cards equal to half the card's value (round up) |
+
+*Aces count as 1 or 11 for both damage and bonus-effect math — your choice, decided at the time you play it.*
+
+### Court Card Retaliation Effects
+
+**UPDATED v2.3 — **New this patch.
+
+In addition to normal ATK retaliation, a Court Card's suit inflicts a bonus effect on the engaging player if the tile survives the turn. All math rounds down. These effects apply only for the duration of that engagement — defeating the tile or retreating clears them immediately; they never carry into a later fight.
+
+| **Suit** | **Court Retaliation Effect** |
+| --- | --- |
+| Wands | Halves the damage you deal next turn against this tile |
+| Cups | Heals the Court Card for half its rolled ATK |
+| Swords | Deals ATK × 1.5 instead of standard ATK |
+| Pentacles | You discard cards equal to half its rolled ATK, capped at half your hand size |
+
+### Player Defeat
+
+When a player's Health Pool reaches 0:
+
+- They immediately discard their current hand of Minor Arcana cards face-down to the shared Discard Pile.
+
+- They stop taking turns and spectate for the rest of the run — they do not move, engage, draw, or act.
+
+- Any Spells they've already earned are unaffected. Earned Spells are never lost on defeat — see Section 8. The only thing in the game that permanently destroys a card is Death's boss ability (Section 9) — everything else, including a defeated player's discarded hand, stays in play and can return through normal shuffling.
+
+- The run continues as long as at least one player still has Health remaining. When every player has reached 0, the run ends and the dungeon reshuffles — see Section 8.
+
+# 7. DEFEATING A TILE — SPELLS
+
+When a Dungeon tile is defeated, it does not leave play permanently. Instead:
+
+It is removed from the maze and added to a Spell Hand as a one-time-use Spell. By default, it goes to the player who landed the finishing blow — spell ownership is individual, matching the rest of individual Health Pools and combat. Playing with a single shared team Spell Hand instead remains a supported house rule if your group prefers it.
+
+**UPDATED v2.3 — **Court Card spells now roll their dice pool at burn time.
+
+- Court Card spells: at the moment you burn it, roll the card's ATK dice pool once. Apply that rolled number through the card's suit effect math, using the same rounding as that suit's normal bonus effect (Wands/Swords/Pentacles round up; Cups rounds up, two-thirds of the rolled value). Example: burning a King of Wands rolls 4d6, and that result — halved, rounded up — reduces a boss's ATK for the fight.
+
+- Major Arcana spells: each has a unique effect — see Section 9, the Codex.
+
+Burning a Spell: at any point on your turn, you may burn one owned Spell to trigger its effect. Once burned, that card is set aside in a separate Burned Pile — it does not return to your hand.
+
+# 8. THE LIVING DUNGEON — RESHUFFLE
+
+When your run ends in defeat — every player's Health Pool has reached 0 — resolve the following and begin a new run. Defeating The World ends the game entirely instead of triggering a reshuffle; skip straight to Section 10.
+
+- All unused Spells in players' Spell Hands stay with the players — they are never lost, even for a player who was defeated mid-run. This is separate from the ordinary hand of Minor Arcana cards discarded on defeat (Section 6) — Spells and your playing hand are two different pools, and only the playing hand is affected by defeat.
+
+- All Spells burned this run are collected and shuffled back into a fresh Dungeon Deck, along with any tiles that were never defeated at all.
+
+- Defeated-and-kept tiles do not return — only what was actually spent (burned) comes back, plus whatever was never beaten. This is also why the dungeon gets meaner, not just smaller: every clean win you hold onto as a Spell is gone from the pool for good, so what cycles back is only what already beat you or what you've already used up.
+
+- Rebuild the maze from scratch (Sections 3–4) using this new, smaller Dungeon Deck. A new Entrance Guardian is drawn — if the previous one was burned, it goes back into this pool and can come up again. Reshuffle the Player Deck and each player draws a fresh 5-card hand.
+
+*This is your core roguelite loop: grind, spend, lose, rebuild — smaller and meaner every time. Burning a Spell is a real cost, not a free action — it**'**s the thing that keeps runs from getting monotonically easier: hoard Spells across runs for a late alpha-strike, or spend as you go and accept a harder dungeon later. Hoard everything, and the Dungeon Deck eventually has nothing left to draw from — see The World, Section 9, for what that means.*
+
+# 9. THE MAJOR ARCANA CODEX
+
+Each Major Arcana card has a unique dual effect: dangerous when faced as a boss, useful once earned as a spell. Rows marked UPDATED were changed or reworked in v2.3.
+
+| **#** | **Card** | **ATK** | **HP** | **As Boss** | **As Spell** |
+| --- | --- | --- | --- | --- | --- |
+| 0 | The Fool | 1d6 | 19 | Roll a d4 odd/even at fight start; odd forces a full hand discard-and-redraw. | Burn to voluntarily redraw your whole hand. |
+| I | The Magician | 1d6 | 21 | You cannot draw mid-fight; use only what's in hand. | Convert one card in hand to any suit. |
+| II | The High Priestess | 1d6 | 21 | UPDATED — When she retaliates, secretly roll her ATK dice pool without showing the result. Deal that damage as normal — but for your next turn against her, you cannot play any card matching either number rolled. | UPDATED — Burn to secretly look at the next 3 cards of the Draw Pile and rearrange them in any order, face-down, without showing anyone. |
+| III | The Empress | 1d6 | 22 | Gains +3 HP each Round it isn't defeated that Round. | Burn to heal your own Health Pool by 50% of its current value, up to your maximum of 30. |
+| IV | The Emperor | 2d6 | 25 | At engagement, halves every player's hand size (round up). Reapplies on re-engage. Hands of 1 card are unaffected. | Force a boss to skip its passive ability for one fight. |
+| V | The Hierophant | 2d6 | 25 | Cards must be played in ascending order — using whatever value you declare for any Ace played — or the combo deals 0 damage; cards are still discarded and the boss still retaliates. | Ignore one suit-immunity on your next attack. |
+| VI | The Lovers | 1d6 | 24 | Must play exactly 2 matching-suit cards, or the combo deals 0 damage and triggers no suit effects. | Combine 2 cards in hand into one, values summed. |
+| VII | The Chariot | 2d6 | 27 | Damage does not carry over between turns. | Carry unused damage/cards into your next fight. |
+| VIII | Strength | 2d6 | 30 | Takes half damage from your highest card each turn. | Halve a boss's ATK for the entire fight. |
+| IX | The Hermit | 2d6 | 30 | Must be fought alone. This overrides the normal rule allowing allies to join a fight in progress — no one may join a Hermit fight once it's started. | Reveal the lowest-total-HP path through the dungeon. |
+| X | Wheel of Fortune | 2d6 | 27 | No unique passive — attacks with a standard dice-pool ATK. | UPDATED — Burn to discard your entire hand and draw the same number of fresh cards from the Draw Pile. |
+| XI | Justice | See below | 26 | Duel of Consequence. HP never carries over between turns — always 26 at the start of each attempt. If a single combo totals ≥ 26, Justice is defeated. If it falls short, the engaging player's own Health Pool takes damage equal to the combo's total, every played card returns to hand untouched (no discard, no suit effects), and Justice's HP resets to 26 for the next attempt. | UPDATED — Burn to roll the target boss's ATK dice pool once, converting it to a flat number, then swap that number with the boss's current HP — the boss's new ATK becomes a flat value equal to its former HP. |
+| XII | The Hanged Man | 2d6 | 30 | Your highest-value card cannot be played this fight. | Suspend a boss's ATK for one full turn. |
+| XIII | Death | 3d6 | 32 | On defeat, each player individually loses their own lowest-value card, permanently removed from the game. This is the only way any card is ever permanently removed from a run. | Permanently remove any undefeated tile with no reward. |
+| XIV | Temperance | 2d6 | 32 | UPDATED — Must play exactly its remaining HP in one combo, or the turn is wasted (deals 0 damage) and Temperance still retaliates with full ATK as normal. | UPDATED — Burn to deal damage to the engaged tile equal to half your missing Health, then heal yourself that same amount. |
+| XV | The Devil | 3d6 | 34 | UPDATED — Defeating it costs a Spell from your hand, sent to the Burned Pile like a normal burn — it is not permanently lost and can return in a future reshuffle. | Force a boss to lose its passive ability permanently. |
+| XVI | The Tower | 3d6 | 36 | Roll a d4; the suit rolled cannot be played this fight. | UPDATED — Burn while standing on a Court Card tile: roll a d4 for a suit. If it matches that Court Card's suit, you may skip the tile entirely (walk past it, undefeated, for later). Otherwise the spell is spent for nothing. |
+| XVII | The Star | 2d6 | 27 | Cannot be engaged until the engaging player's Health Pool drops below 50%. Any ally who wants to join this fight in progress must also individually be below 50% Health — a full-health player cannot join. | Heal your own Health Pool and reveal the strongest remaining tile. |
+| XVIII | The Moon | 2d6 | 32 | UPDATED — For her first 2 rounds, before your Act, turn your hand face-down and shuffle it, then play your combo blind — card values, and any suit bonuses they trigger, aren't revealed until after the combo is committed. | UPDATED — Burn when an enemy rolls its ATK dice pool: reroll one of the dice. You may discard additional cards from your hand, one for one, to reroll additional dice. If rerolling more than one, you must reroll in ascending order, starting with the lowest die shown — you don't get to pick. Rerolls are resolved one at a time, in order, and each result stands even if it's higher than the original. |
+| XIX | The Sun | 1d6 | 17 | Deliberately weak stats; defeating it also heals the pool. | Fully heal your own Health Pool, no conditions. |
+| XX | Judgement | 3d6 | 34 | Forces a refight of the last tile your team defeated — that Spell card leaves the holder's hand and physically returns to the board. | Reclaim one already-burned Spell back into your hand. |
+| XXI | The World | 4d6 | 43 | UPDATED — Occupies a tile like any other and can be revealed at any time during play, but cannot be Engaged until every other tile in the run's Dungeon Deck has been defeated. If revealed early, it simply sits there, visible and untouchable, until that condition is met. | No spell exists — defeating it ends the run, and the game. |
+
+### Justice — Duel of Consequence
+
+Justice is the sole exception to both the dice-pool ATK system and standard damage carry-over. Its HP is always 26 at the start of each attempt — it is a puzzle to solve in a single combo, not a war of attrition. Its 26 HP is intentionally left out of the general HP pass; it's a fixed target number, not an attrition stat.
+
+### Court Card Stat Block
+
+**UPDATED v2.3 — **Court ATK is now a dice pool; HP adjusted -5% from v2.2 to compensate.
+
+| **Rank** | **HP** | **ATK** |
+| --- | --- | --- |
+| Page | 16 | 1d6 |
+| Knight | 24 | 2d6 |
+| Queen | 29 | 3d6 |
+| King | 37 | 4d6 |
+
+# 10. WIN CONDITION
+
+Dungeon Arcana is fully cooperative. The team wins when The World is defeated. Combat is resolved player-by-player, but the run itself is shared — it isn't over until every player is down. Whoever lands the finishing blow earns bragging rights and the unofficial title of MVP — this has no mechanical effect. Everyone wins or loses together.
+
+**UPDATED v2.3 — **Defeating The World now ends the game entirely.
+
+Once The World falls, the campaign is complete — there is no reshuffle and no next run (see Section 8).
+
+### Optional — The Last Duel (Post-Game)
+
+Once The World is defeated, players may optionally fight each other, player-vs-player, for possession of The World card as a bragging-rights trophy. This has no effect on the completed campaign, and no formal rules are defined for it here — freeform it with whatever's left in hand, or skip it entirely.
+
+# 11. QUICK REFERENCE — SUIT THEMES
+
+| **Suit** | **Theme** | **Combat Role** |
+| --- | --- | --- |
+| Wands | Will, action, drive | Reduce boss ATK |
+| Cups | Emotion, healing | Heal own Health Pool |
+| Swords | Intellect, precision | Bonus damage |
+| Pentacles | Resources, stability | Draw cards |
+
+# 12. DESIGNER'S NOTES / OPEN VARIABLES
+
+As of v2.3, the previously-open variables from v2.0–v2.2 remain resolved into the defaults below. What follows is genuinely optional.
+
+- Combat resolution: each player's own Health Pool absorbs their own failed engagements. No shared-pool mode exists in this ruleset as written; running one is a house rule, not the default.
+
+- Court Card HP/ATK: canon — see Section 9.
+
+- Maze shape: a pre-generated, unbounded directional network, not a fixed grid size. See Section 4.
+
+- Difficulty distribution (default): the pre-game generation described in Section 4 places tiles at random; there is no distance-based weighting in the default ruleset. Groups wanting the dungeon to ramp up with distance from the Entrance can apply the Escalation Variant below.
+
+- Escalation Variant (optional): before shuffling the Dungeon Deck for generation, sort higher-tier Major Arcana toward the bottom of the deck so they're more likely to be placed farther from the Entrance Guardian in the cursor walk.
+
+- Shared Spell Hand (optional): if your group prefers a fully pooled team resource over individual ownership, treat all earned Spells as team property instead of the defeating player's — see Section 7.
+
+# APPENDIX A: PRESET DUNGEONS
+
+For groups who'd rather not generate their own maze, a fixed layout can be used instead: a pre-selected Entrance Guardian plus a set path of tiles at increasing distance from the origin, chosen for a smooth difficulty curve.
+
+- The Novice Crawl — a short, forgiving path for first-time groups.
+
+- The Grinder — a mid-length run with a heavier Court Card density for Spell-farming.
+
+- The Gauntlet — a lean, high-difficulty path front-loading Major Arcana for experienced groups.
+
+*This appendix is a framework, not finished content. Card-by-card layouts for these three presets are planned for a future patch.*
+
+*Dungeon Arcana — v2.3 patched rulebook. Playtest, break it, fix it, repeat.*

@@ -1,0 +1,9 @@
+# Legend:  [TWEAK] = safe to change   [LOCKED] = do not touch
+# [TWEAK] Build output: generated, never hand-formatted.
+dist
+# [TWEAK] Installed packages: not our code.
+node_modules
+# [LOCKED] The lockfile is machine-written; formatting it creates noisy diffs.
+package-lock.json
+# [TWEAK] Markdown docs are hand-written (tables, wording); Prettier would rewrite them. Remove this line to auto-format docs.
+*.md

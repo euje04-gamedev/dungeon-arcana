@@ -1,0 +1,35 @@
+// Legend:  [TWEAK] = safe to change   [CAREFUL] = changeable, but read the note   [LOCKED] = do not touch
+{
+  "compilerOptions": {
+    // [CAREFUL] JS version the code is checked against. ES2022 is supported by every modern phone browser.
+    "target": "ES2022",
+    // [LOCKED] Keep modern import/export syntax; Vite does the bundling, not TypeScript.
+    "module": "ESNext",
+    // [LOCKED] Resolve imports the way Vite does. Changing this breaks import paths.
+    "moduleResolution": "bundler",
+    // [CAREFUL] Built-in types available. "DOM" is only needed by src/main.ts and the UI; engine code must never use it (ESLint enforces that).
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    // [LOCKED] Strict mode is the whole reason we chose TypeScript (README tech stack). Turning it off hides rule-math bugs.
+    "strict": true,
+    // [TWEAK] Makes array/map lookups return "T | undefined", forcing a check. Great for the sparse tile map; turn off only if it becomes too noisy.
+    "noUncheckedIndexedAccess": true,
+    // [TWEAK] Errors if a switch case falls through to the next one by accident. Useful for the future action/effect switches.
+    "noFallthroughCasesInSwitch": true,
+    // [TWEAK] Errors on variables that are never used. Relax to false while prototyping if needed.
+    "noUnusedLocals": true,
+    // [TWEAK] Errors on function parameters that are never used (prefix with _ to silence one).
+    "noUnusedParameters": true,
+    // [LOCKED] Forces "import type" for type-only imports. Svelte and Vite's compiler rely on this being explicit.
+    "verbatimModuleSyntax": true,
+    // [LOCKED] Every file must compile on its own, because Vite compiles files one at a time.
+    "isolatedModules": true,
+    // [TWEAK] Skip type-checking inside node_modules for speed.
+    "skipLibCheck": true,
+    // [LOCKED] TypeScript only checks; Vite produces the output. Never let tsc write files.
+    "noEmit": true,
+    // [LOCKED] Pull in Vite's and Svelte's global type declarations (import.meta, .svelte files).
+    "types": ["vite/client", "svelte"]
+  },
+  // [CAREFUL] Folders and files TypeScript checks. Add new top-level code folders here.
+  "include": ["src/**/*.ts", "src/**/*.svelte", "tests/**/*.ts", "vite.config.ts"]
+}

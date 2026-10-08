@@ -1,0 +1,21 @@
+<!doctype html>
+<!-- [LOCKED] Declares this file as modern HTML5. -->
+<html lang="en">
+  <!-- [TWEAK] lang="en" above: change if you ever translate the UI. -->
+  <head>
+    <!-- [LOCKED] Text encoding. Needed for tarot symbols and any accented text. -->
+    <meta charset="UTF-8" />
+    <!-- [LOCKED] Mobile-first: fit the phone width; viewport-fit=cover lets the game use the full screen on notched phones. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!-- [TWEAK] Colors the phone's browser bar. Match this to the app background in App.svelte. -->
+    <meta name="theme-color" content="#14121a" />
+    <!-- [TWEAK] Tab / app title. -->
+    <title>Dungeon Arcana</title>
+  </head>
+  <body>
+    <!-- [LOCKED] The empty mount point. src/main.ts looks up this exact id ("app") and fills it. -->
+    <div id="app"></div>
+    <!-- [LOCKED] Entry point of the whole UI. Vite rewrites this path at build time. -->
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
